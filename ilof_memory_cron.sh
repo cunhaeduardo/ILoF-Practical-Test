@@ -7,7 +7,7 @@ set -euo pipefail
 SCRIPT_NAME="$(basename "$0")"
 DRY_RUN=false
 CRON_INTERVAL=10  # default interval in minutes
-LOG_FILE="./log/memory_usage.log"
+LOG_FILE="var/log/memory_usage.log"
 HELPER_SCRIPT="/usr/local/bin/ilof_log_memory.sh"
 
 # ---------------------------------
