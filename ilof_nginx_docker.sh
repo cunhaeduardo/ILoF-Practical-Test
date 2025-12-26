@@ -12,7 +12,7 @@ HOST_HTTPS_PORT=443
 NGINX_HTML_DIR="./srv/ilof_nginx_html"
 CUSTOM_INDEX_CONTENT="Server Provisioned by Eduardo on $(date +'%Y-%m-%d %H:%M:%S')"
 DOCKER_IMAGE="nginx:latest"
-USE_HTTPS=false
+USE_HTTPS=true
 
 # ---------------------------------
 # Helpers

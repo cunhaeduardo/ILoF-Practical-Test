@@ -18,7 +18,6 @@ Options:
   --dry-run                 Show what would be executed without making changes
   --stop-on-failure         Stop the run if any step fails (default: continue)
   --scripts <csv-list>      Comma-separated list of scripts to run (default: all known scripts in the same dir)
-  --script-args <list>      Comma-separated list of script:args pairs to pass to scripts (example: ilof_nginx_docker.sh:--https)
   -h, --help                Show this help message
 
 Example:
@@ -42,18 +41,6 @@ parse_args() {
                     echo "ERROR: --scripts requires an argument"; exit 1
                 fi
                 IFS=',' read -r -a SCRIPTS <<< "$2"; shift 2
-                ;;
-            --script-args)
-                if [[ -z "${2:-}" ]]; then
-                    echo "ERROR: --script-args requires an argument"; exit 1
-                fi
-                IFS=',' read -r -a _tmp_script_args <<< "$2"
-                for _entry in "${_tmp_script_args[@]}"; do
-                    _key="${_entry%%:*}"
-                    _val="${_entry#*:}"
-                    script_args["$_key"]="$_val"
-                done
-                shift 2
                 ;;
             -h|--help) usage; exit 0 ;;
             *) echo "Unknown option: $1"; usage; exit 1 ;;
@@ -111,8 +98,6 @@ main() {
     declare -a exitcodes=()
     declare -a durations=()
     declare -a logfiles=()
-    # Map of basename -> extra args (e.g. ilof_nginx_docker.sh:--https)
-    declare -A script_args=()
 
     local idx=0
     local any_failed=false
@@ -143,20 +128,12 @@ main() {
         local start ts_end elapsed
         start=$(date +%s)
 
-        # Include any script-specific extra args passed via --script-args (keyed by basename)
-        local extra_args="${script_args[$sname]:-}"
-
         if [[ "$DRY_RUN" == "true" ]]; then
-            echo "[DRY-RUN] bash ${script} ${extra_args} --dry-run"
+            echo "[DRY-RUN] bash ${script} --dry-run"
             rc=0
         else
             rc=0
-            if [[ -n "${extra_args}" ]]; then
-                # shellcheck disable=SC2086
-                bash "$script" ${extra_args} >> "$logfile" 2>&1 || rc=$?
-            else
-                bash "$script" >> "$logfile" 2>&1 || rc=$?
-            fi
+            bash "$script" >> "$logfile" 2>&1 || rc=$?
         fi
 
         ts_end=$(date +%s)

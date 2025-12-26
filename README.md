@@ -89,8 +89,6 @@ sudo ./ilof_createuser.sh -u deploy_admin
 
 - Run Nginx with HTTPS (generates a self-signed cert in `srv/ilof_nginx_html/certs`):
   - `sudo ./ilof_nginx_docker.sh --https`
-  - Or via the orchestrator, passing the flag to the script:
-    - `sudo ./ilof_run_all.sh --scripts ilof_nginx_docker.sh --script-args ilof_nginx_docker.sh:--https`
 
 - Install memory cron to run every 5 minutes (dry-run first):
   - `sudo ./ilof_memory_cron.sh --interval 5 --dry-run`
