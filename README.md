@@ -7,6 +7,7 @@ OS Host: Windows 11 (25H2)
 Download Ubuntu 24.04 Linux Server image on official page and install the .ISO
 
 URL: https://ubuntu.com/download/server/thank-you?version=24.04.3&architecture=amd64&lts=true
+
 *Username:* eduardo
 *Hostname:* ubuntu2404server
 *Password:* ilof
