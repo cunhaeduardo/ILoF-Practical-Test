@@ -93,12 +93,7 @@ ensure_cron_installed() {
     fi
 }
 
-# ---------------------------------
-# Create helper script for logging memory
-# ---------------------------------
-# ---------------------------------
-# Create helper script for logging memory
-# ---------------------------------
+
 # ---------------------------------
 # Create helper script for logging memory
 # ---------------------------------
