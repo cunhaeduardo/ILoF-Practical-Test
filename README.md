@@ -157,7 +157,7 @@ sudo ./ilof_run_all.sh
 ## Contributing / License ✍️
 
 - Author / Maintainer: Eduardo Cunha
-- If you'd like changes to tone, examples, or to add CI checks / unit tests / a VM test harness, open an issue or request edits here and I'll update the README.
+
 
 
 
