@@ -140,9 +140,14 @@ sudo ./ilof_createuser.sh -u deploy_admin
 
 ## Contributing / License ✍️
 
-- Author / Maintainer: Eduardo Cunha
+- Author / Maintainer: Eduardo
 - If you'd like changes to tone, examples, or to add CI checks / unit tests / a VM test harness, open an issue or request edits here and I'll update the README.
 
 ---
 
+If you'd like, I can:
+- Add more examples (step-by-step),
+- Add a `CHECKLIST.md` for manual pre-run checks, or
+- Add GitHub Actions to run basic shellcheck/lint checks.
 
+Tell me which you'd prefer and I will update the README.
