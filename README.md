@@ -91,8 +91,9 @@ sudo ./ilof_run_all.sh
   - `--sshd-config <path>` — alternate sshd config location
   - `--dry-run`
 
-- `ilof_nginx_docker.sh` — Installs Docker if missing, prepares `./srv/ilof_nginx_html/` and runs an `nginx` container named `ilof_nginx`. If `--https` is passed it will create a self-signed cert and an HTTPS-enabled nginx config.
-  - `--https` — enable HTTPS and mount certs and config
+- `ilof_nginx_docker.sh` — Installs Docker if missing, prepares `./srv/ilof_nginx_html/` and runs an `nginx` container named `ilof_nginx`.
+  - **HTTPS is enabled by default**; the script will generate a self-signed certificate and apply an HTTPS-enabled nginx config unless explicitly disabled.
+  - `--no-https` — disable HTTPS (default: HTTPS enabled)
   - `--dry-run`
 
 - `ilof_memory_cron.sh` — Ensures `cron` is installed, creates `/usr/local/bin/ilof_log_memory.sh` (helper script to log memory usage to `var/log/memory_usage.log`) and installs a root cron job.
@@ -109,8 +110,9 @@ sudo ./ilof_run_all.sh
 - Run only specific scripts (from repo directory):
   - `sudo ./ilof_run_all.sh --scripts ilof_createuser.sh,ilof_security_hardening.sh`
 
-- Run Nginx with HTTPS (generates a self-signed cert in `srv/ilof_nginx_html/certs`):
-  - `sudo ./ilof_nginx_docker.sh --https`
+- Run Nginx (HTTPS enabled by default; generates a self-signed cert in `srv/ilof_nginx_html/certs`):
+  - `sudo ./ilof_nginx_docker.sh`  # HTTPS will be enabled and certs generated
+  - To run without HTTPS: `sudo ./ilof_nginx_docker.sh --no-https`
 
 - Install memory cron to run every 5 minutes (dry-run first):
   - `sudo ./ilof_memory_cron.sh --interval 5 --dry-run`
@@ -162,14 +164,7 @@ sudo ./ilof_run_all.sh
 
 ## Contributing / License ✍️
 
-- Author / Maintainer: Eduardo
+- Author / Maintainer: Eduardo Cunha
 - If you'd like changes to tone, examples, or to add CI checks / unit tests / a VM test harness, open an issue or request edits here and I'll update the README.
 
----
 
-If you'd like, I can:
-- Add more examples (step-by-step),
-- Add a `CHECKLIST.md` for manual pre-run checks, or
-- Add GitHub Actions to run basic shellcheck/lint checks.
-
-Tell me which you'd prefer and I will update the README.

@@ -23,11 +23,15 @@ Usage: sudo ${SCRIPT_NAME} [options]
 
 Options:
   --dry-run                Show what would be executed without making changes
-  --https                  Enable HTTPS with self-signed certificate
+  --no-https               Disable HTTPS (HTTPS is enabled by default)
   -h, --help               Show this help message
 
 Example:
-  sudo ${SCRIPT_NAME} --dry-run --https
+  # Default behavior: HTTPS enabled
+  sudo ${SCRIPT_NAME} --dry-run
+
+  # Explicitly disable HTTPS
+  sudo ${SCRIPT_NAME} --no-https --dry-run
 EOF
 }
 
@@ -57,8 +61,8 @@ parse_args() {
                 DRY_RUN=true
                 shift
                 ;;
-            --https)
-                USE_HTTPS=true
+            --no-https)
+                USE_HTTPS=false
                 shift
                 ;;
             -h|--help)
