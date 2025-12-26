@@ -23,6 +23,13 @@
 - A Debian/Ubuntu based system (or compatible) with `apt` and `systemd` available.
 - Root privileges (scripts require `sudo` or running as `root`) except when using `--dry-run`.
 - Internet access (to install packages and Docker if missing).
+- Required client tools to fetch the release ZIP: `wget` (or `curl`) and `unzip` to unpack the archive. Install them if missing:
+
+```bash
+sudo apt update
+sudo apt install -y wget unzip    # or: sudo apt install -y curl unzip
+```
+
 - Recommended to test inside a VM/container before running on production.
 
 > Note: These scripts are POSIX/bash shell scripts intended for Linux hosts — they will not run on Windows without a Linux environment (WSL, VM, etc.).
@@ -31,24 +38,39 @@
 
 ## Quick start ⚡️
 
-1. Preview what would run (safe):
+Follow these steps to download the repo release, prepare the scripts, and run the orchestrator:
 
 ```bash
+# Download the repository ZIP (release branch 'main')
+wget https://github.com/cunhaeduardo/ILoF-Practical-Test/archive/refs/heads/main.zip -O main.zip
+
+# Install unzip if missing (on Debian/Ubuntu)
+sudo apt update && sudo apt install -y unzip
+
+# Unpack and enter the directory
+unzip main.zip
+cd ILoF-Practical-Test-main
+
+# Make all ilof_* scripts executable
+chmod +x ilof_*
+
+# Optional: Preview what would run (safe dry-run)
 sudo ./ilof_run_all.sh --dry-run
-```
 
-2. Run the full provisioning (all scripts in default order):
-
-```bash
+# Run the full provisioning (all scripts in default order)
 sudo ./ilof_run_all.sh
 ```
 
-3. Run a single script (example: create user):
+Alternative (if you prefer git):
 
 ```bash
-sudo ./ilof_createuser.sh -u deploy_admin --dry-run
-sudo ./ilof_createuser.sh -u deploy_admin
+git clone https://github.com/cunhaeduardo/ILoF-Practical-Test.git
+cd ILoF-Practical-Test
+chmod +x ilof_*
+sudo ./ilof_run_all.sh
 ```
+
+> **Tip:** Use `--dry-run` first to preview changes and check individual script logs under `var/log/ilof_run/` before running for real.
 
 ---
 
