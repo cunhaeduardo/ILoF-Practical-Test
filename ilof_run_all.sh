@@ -7,7 +7,7 @@ set -uo pipefail
 SCRIPT_NAME="$(basename "$0")"
 DRY_RUN=false
 STOP_ON_FAILURE=false
-LOG_DIR="var/log/ilof_run"
+LOG_DIR="/var/log/ilof_run"
 SCRIPTS=()
 
 usage() {
