@@ -152,19 +152,12 @@ sudo ./ilof_run_all.sh
 ├─ ilof_security_hardening.sh
 ├─ ilof_nginx_docker.sh
 ├─ ilof_memory_cron.sh
-└─ srv/
-   ├─ default.conf
-   └─ ilof_nginx_html/
-      ├─ default.conf
-      ├─ index.html
-      └─ certs/
 ```
-
----
 
 ## Contributing / License ✍️
 
 - Author / Maintainer: Eduardo Cunha
 - If you'd like changes to tone, examples, or to add CI checks / unit tests / a VM test harness, open an issue or request edits here and I'll update the README.
+
 
 
